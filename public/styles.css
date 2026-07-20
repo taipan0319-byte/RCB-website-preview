@@ -67,3 +67,25 @@ footer{background:var(--deep);color:#b8c3ca;min-height:170px;padding:40px var(--
 
 /* Principle statement (replaces the old blockquote) */
 .principle-statement{font-family:var(--serif);font-size:clamp(34px,4.4vw,66px);font-weight:400;line-height:1.18;letter-spacing:-.03em;color:var(--ink);max-width:1000px;margin:65px auto 0}
+
+/* Enterprise risk management section */
+.erm{display:grid;grid-template-columns:1.05fr .95fr;gap:6vw;align-items:center}
+.erm-copy h2{font-family:var(--serif);font-size:clamp(38px,4.4vw,64px);font-weight:400;letter-spacing:-.04em;line-height:1.03;margin-bottom:24px}
+.erm-copy>p:not(.section-number){color:#42535f;font-size:17px;line-height:1.7;max-width:54ch}
+.tenets{margin-top:38px;border-top:1px solid var(--ink);counter-reset:t}
+.tenets div{display:flex;gap:18px;align-items:baseline;padding:15px 4px;border-bottom:1px solid var(--rule);font-size:15.5px;font-weight:650;transition:color .5s}
+.tenets div:before{counter-increment:t;content:"0" counter(t);font-size:11px;color:var(--blue);font-weight:800}
+.tenets div.active{color:var(--blue)}
+.erm-panel{position:relative;min-height:560px;border-radius:var(--radius);background:#0d141b;overflow:hidden;box-shadow:0 24px 60px rgba(6,21,34,.14);display:flex;align-items:center;justify-content:center}
+.erm-panel:after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 90px rgba(0,0,0,.5);pointer-events:none;border-radius:inherit}
+.erm-scene{width:340px;height:400px;perspective:1100px}
+.erm-stack{position:relative;width:100%;height:100%;transform-style:preserve-3d;animation:ermspin 22s linear infinite}
+@keyframes ermspin{from{transform:rotateX(-24deg) rotateY(0)}to{transform:rotateX(-24deg) rotateY(360deg)}}
+.erm-slab{position:absolute;left:50%;top:50%;transform-style:preserve-3d}
+.erm-face{position:absolute;left:50%;top:50%;width:240px;height:44px;margin:-22px 0 0 -120px;background:linear-gradient(rgba(21,167,224,.32),rgba(0,112,175,.16));border:1px solid rgba(110,207,241,.55);box-shadow:0 0 24px rgba(21,167,224,.12) inset;transition:border-color .5s,box-shadow .5s}
+.erm-face.top{width:240px;height:240px;margin:-120px 0 0 -120px;background:rgba(110,207,241,.13);border:1px solid rgba(110,207,241,.6)}
+.erm-slab.active .erm-face{border-color:rgba(145,226,255,.95);box-shadow:0 0 34px rgba(21,167,224,.4) inset}
+.erm-label{position:absolute;z-index:3;left:24px;right:24px;bottom:18px;display:flex;justify-content:space-between;color:rgba(255,255,255,.65);text-transform:uppercase;font-size:9px;letter-spacing:.18em}
+@media(max-width:1000px){.erm{grid-template-columns:1fr}.erm-panel{min-height:470px}}
+@media(max-width:680px){.erm-panel{min-height:400px;border-radius:18px}.erm-scene{width:270px;height:320px}.erm-face{width:190px;margin-left:-95px}.erm-face.top{width:190px;height:190px;margin:-95px 0 0 -95px}}
+@media(prefers-reduced-motion:reduce){.erm-stack{animation:none;transform:rotateX(-24deg) rotateY(-30deg)}}

@@ -73,3 +73,37 @@
   });
   addEventListener('resize',resize,{passive:true});resize();raf=requestAnimationFrame(frame);
 })();
+
+/* Enterprise risk management: rotating layer cube + tenet sync */
+(() => {
+  const stack = document.getElementById('erm-stack');
+  if (!stack) return;
+  const N = 4, GAP = 74, D = 240, H = 44;
+  const slabs = [];
+  for (let i = 0; i < N; i++) {
+    const slab = document.createElement('div');
+    slab.className = 'erm-slab';
+    slab.style.transform = `translateY(${(i - (N - 1) / 2) * GAP}px)`;
+    for (let f = 0; f < 4; f++) {
+      const el = document.createElement('div');
+      el.className = 'erm-face';
+      el.style.transform = `rotateY(${f * 90}deg) translateZ(${D / 2}px)`;
+      el.style.opacity = String(1 - i * .12);
+      slab.appendChild(el);
+    }
+    const top = document.createElement('div');
+    top.className = 'erm-face top';
+    top.style.transform = `rotateX(90deg) translateZ(${H / 2}px)`;
+    slab.appendChild(top);
+    stack.appendChild(slab);
+    slabs.push(slab);
+  }
+  const tenets = document.querySelectorAll('#tenets > div');
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches || tenets.length !== N) return;
+  let k = 0;
+  setInterval(() => {
+    tenets.forEach((t, j) => t.classList.toggle('active', j === k));
+    slabs.forEach((s, j) => s.classList.toggle('active', j === k));
+    k = (k + 1) % N;
+  }, 2800);
+})();
