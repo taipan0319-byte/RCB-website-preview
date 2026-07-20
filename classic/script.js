@@ -91,12 +91,10 @@
       el.style.transform = `rotateY(${f * 90}deg) translateZ(${D / 2}px)`;
       el.style.opacity = String(1 - i * .12);
       el.style.setProperty('--sheen-delay', `${-(f * 5.5 + i * 1.3)}s`);
-      if (f % 2 === 0) {
-        const tag = document.createElement('span');
-        tag.textContent = labels[i] || '';
-        el.appendChild(tag);
-        tags.push({ el: tag, f });
-      }
+      const tag = document.createElement('span');
+      tag.textContent = labels[i] || '';
+      el.appendChild(tag);
+      tags.push({ el: tag, f });
       slab.appendChild(el);
     }
     const top = document.createElement('div');
