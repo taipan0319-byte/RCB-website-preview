@@ -1,2 +1,6 @@
 User-agent: *
-Disallow: /
+Allow: /
+Disallow: /classic/
+Disallow: /public/
+
+Sitemap: https://www.rcbco.com/sitemap.xml
