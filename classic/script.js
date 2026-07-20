@@ -79,7 +79,8 @@
   const stack = document.getElementById('erm-stack');
   if (!stack) return;
   const N = 4, GAP = 74, D = 240, H = 44;
-  const slabs = [];
+  const labels = Array.from(document.querySelectorAll('#tenets > div'), d => d.textContent.trim());
+  const slabs = [], tags = [];
   for (let i = 0; i < N; i++) {
     const slab = document.createElement('div');
     slab.className = 'erm-slab';
@@ -89,6 +90,13 @@
       el.className = 'erm-face';
       el.style.transform = `rotateY(${f * 90}deg) translateZ(${D / 2}px)`;
       el.style.opacity = String(1 - i * .12);
+      el.style.setProperty('--sheen-delay', `${-(f * 5.5 + i * 1.3)}s`);
+      if (f % 2 === 0) {
+        const tag = document.createElement('span');
+        tag.textContent = labels[i] || '';
+        el.appendChild(tag);
+        tags.push({ el: tag, f });
+      }
       slab.appendChild(el);
     }
     const top = document.createElement('div');
@@ -98,8 +106,26 @@
     stack.appendChild(slab);
     slabs.push(slab);
   }
+
+  // JS-driven rotation: label opacity follows each face's angle to the viewer,
+  // so text is only shown right-reading and fades near edge-on.
+  const setAngle = deg => {
+    stack.style.transform = `rotateX(-24deg) rotateY(${deg}deg)`;
+    tags.forEach(t => {
+      const c = Math.cos((deg + t.f * 90) * Math.PI / 180);
+      t.el.style.opacity = c > 0 ? Math.pow(c, 1.4).toFixed(3) : '0';
+    });
+  };
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reducedMotion) {
+    setAngle(-30);
+  } else {
+    const spin = ms => { setAngle((ms / 22000 * 360) % 360); requestAnimationFrame(spin); };
+    requestAnimationFrame(spin);
+  }
+
   const tenets = document.querySelectorAll('#tenets > div');
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches || tenets.length !== N) return;
+  if (reducedMotion || tenets.length !== N) return;
   let k = 0;
   setInterval(() => {
     tenets.forEach((t, j) => t.classList.toggle('active', j === k));

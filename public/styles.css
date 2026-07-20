@@ -79,7 +79,7 @@ footer{background:var(--deep);color:#b8c3ca;min-height:170px;padding:40px var(--
 .erm-panel{position:relative;min-height:560px;border-radius:var(--radius);background:#0d141b;overflow:hidden;box-shadow:0 24px 60px rgba(6,21,34,.14);display:flex;align-items:center;justify-content:center}
 .erm-panel:after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 90px rgba(0,0,0,.5);pointer-events:none;border-radius:inherit}
 .erm-scene{width:340px;height:400px;perspective:1100px}
-.erm-stack{position:relative;width:100%;height:100%;transform-style:preserve-3d;animation:ermspin 22s linear infinite}
+.erm-stack{position:relative;width:100%;height:100%;transform-style:preserve-3d}
 @keyframes ermspin{from{transform:rotateX(-24deg) rotateY(0)}to{transform:rotateX(-24deg) rotateY(360deg)}}
 .erm-slab{position:absolute;left:50%;top:50%;transform-style:preserve-3d}
 .erm-face{position:absolute;left:50%;top:50%;width:240px;height:44px;margin:-22px 0 0 -120px;background:linear-gradient(rgba(21,167,224,.32),rgba(0,112,175,.16));border:1px solid rgba(110,207,241,.55);box-shadow:0 0 24px rgba(21,167,224,.12) inset;transition:border-color .5s,box-shadow .5s}
@@ -88,4 +88,11 @@ footer{background:var(--deep);color:#b8c3ca;min-height:170px;padding:40px var(--
 .erm-label{position:absolute;z-index:3;left:24px;right:24px;bottom:18px;display:flex;justify-content:space-between;color:rgba(255,255,255,.65);text-transform:uppercase;font-size:9px;letter-spacing:.18em}
 @media(max-width:1000px){.erm{grid-template-columns:1fr}.erm-panel{min-height:470px}}
 @media(max-width:680px){.erm-panel{min-height:400px;border-radius:18px}.erm-scene{width:270px;height:320px}.erm-face{width:190px;margin-left:-95px}.erm-face.top{width:190px;height:190px;margin:-95px 0 0 -95px}}
-@media(prefers-reduced-motion:reduce){.erm-stack{animation:none;transform:rotateX(-24deg) rotateY(-30deg)}}
+
+/* ERM cube: tenet labels on the glass + rotating sheen */
+.erm-face{transform-style:preserve-3d}
+.erm-face span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:4px 16px;text-align:center;font-size:9.5px;line-height:1.4;letter-spacing:.13em;text-transform:uppercase;font-weight:700;color:rgba(190,231,255,.82);text-shadow:0 0 12px rgba(21,167,224,.65);opacity:0}
+.erm-face.top span{display:none}
+.erm-slab.active .erm-face span{color:#e6f7ff}
+.erm-face:not(.top):after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.2) 50%,transparent 58%);background-size:320% 100%;background-position:220% 0;animation:ermsheen 22s linear infinite;animation-delay:var(--sheen-delay,0s)}
+@keyframes ermsheen{0%,72%{background-position:220% 0}82%,100%{background-position:-120% 0}}
