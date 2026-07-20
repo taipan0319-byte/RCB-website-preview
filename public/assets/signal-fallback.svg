@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-label="Blue threads resolving into a focused path">
+  <defs>
+    <radialGradient id="bg"><stop stop-color="#0b3552"/><stop offset="1" stop-color="#04131f"/></radialGradient>
+    <linearGradient id="line" x1="0" x2="1"><stop stop-color="#17618e" stop-opacity=".15"/><stop offset=".55" stop-color="#1aa3d9" stop-opacity=".68"/><stop offset="1" stop-color="#9de7ff"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="1200" height="760" fill="url(#bg)"/>
+  <g fill="none" stroke="url(#line)" stroke-linecap="round">
+    <path d="M-40 150 C180 80 230 520 440 330 S650 365 820 380 L1240 380" stroke-width="2"/>
+    <path d="M-30 245 C170 570 280 130 470 390 S675 382 820 380 L1240 380" stroke-width="1.5"/>
+    <path d="M-20 620 C190 320 260 700 450 405 S675 390 820 380 L1240 380" stroke-width="2"/>
+    <path d="M-20 400 C130 40 340 210 455 350 S650 374 820 380 L1240 380" stroke-width="1"/>
+    <path d="M-20 510 C170 760 300 40 475 365 S690 380 820 380 L1240 380" stroke-width="1.2"/>
+    <path d="M0 95 C280 430 190 640 430 375 S660 378 820 380 L1240 380" stroke-width=".8"/>
+    <path d="M0 690 C250 500 230 170 445 390 S650 386 820 380 L1240 380" stroke-width=".8"/>
+  </g>
+  <path d="M760 380 H1200" stroke="#77dafa" stroke-width="3" filter="url(#glow)"/>
+  <g fill="#67d1f5" opacity=".7"><circle cx="230" cy="245" r="3"/><circle cx="340" cy="455" r="2"/><circle cx="470" cy="365" r="3"/><circle cx="625" cy="384" r="2"/></g>
+</svg>
