@@ -111,7 +111,11 @@
     stack.style.transform = `rotateX(-24deg) rotateY(${deg}deg)`;
     tags.forEach(t => {
       const c = Math.cos((deg + t.f * 90) * Math.PI / 180);
-      t.el.style.opacity = c > 0 ? Math.pow(c, 1.4).toFixed(3) : '0';
+      const mag = Math.pow(Math.abs(c), 1.4);
+      // Far faces are seen through the glass from behind: dim them and flip the
+      // text horizontally so it still reads correctly, never mirrored.
+      t.el.style.opacity = (c > 0 ? mag : mag * .4).toFixed(3);
+      t.el.style.transform = c > 0 ? '' : 'scaleX(-1)';
     });
   };
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
