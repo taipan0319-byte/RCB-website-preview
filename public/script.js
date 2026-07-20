@@ -36,6 +36,7 @@
     particles = Array.from({length:count}, (_,i) => ({
       x: Math.random()*w*.52-w*.04, y: h*(.18+Math.random()*.64),
       seed: Math.random()*Math.PI*2, speed:.28+Math.random()*.52,
+      lane: (i%6-2.5)*h*.052,
       size:.45+Math.random()*1.25, color:colors[i%colors.length], trail:[]
     }));
   }
@@ -51,17 +52,18 @@
       const x = progress*w*1.05-w*.12;
       const focus = Math.max(0, Math.min(1, (x-w*.22)/(w*.55)));
       const chaos = (1-focus)*(h*.17);
-      const center = h*.5 + Math.sin(p.seed*3)*h*.018;
+      const center = h*.5 + p.lane*focus + Math.sin(p.seed*3)*h*.018*(1-focus);
       const y = center + Math.sin(x*.019+p.seed*5+t*4)*chaos + Math.sin(x*.006+p.seed)*chaos*.55;
       p.trail.push({x,y}); if(p.trail.length>26) p.trail.shift();
       ctx.beginPath();
       p.trail.forEach((pt,j) => j ? ctx.lineTo(pt.x,pt.y) : ctx.moveTo(pt.x,pt.y));
-      ctx.strokeStyle = p.color; ctx.globalAlpha=.08+(i%7)*.025; ctx.lineWidth=p.size; ctx.stroke();
+      ctx.strokeStyle = p.color; ctx.globalAlpha=(.08+(i%7)*.025)*(1+focus*1.15); ctx.lineWidth=p.size*(1+focus*.4); ctx.stroke();
       if(i%8===0){ctx.beginPath();ctx.arc(x,y,p.size*1.5,0,Math.PI*2);ctx.fillStyle='#75dcff';ctx.globalAlpha=.45;ctx.fill()}
     });
-    ctx.globalAlpha=1;
-    const beam=ctx.createLinearGradient(w*.64,0,w,0);beam.addColorStop(0,'rgba(42,183,235,0)');beam.addColorStop(.3,'rgba(42,183,235,.5)');beam.addColorStop(1,'rgba(145,226,255,.9)');
-    ctx.fillStyle=beam;ctx.fillRect(w*.64,h*.493,w*.36,2);ctx.shadowBlur=18;ctx.shadowColor='#39bce9';ctx.fillRect(w*.72,h*.498,w*.28,1);ctx.shadowBlur=0;
+    const beam=ctx.createLinearGradient(w*.62,0,w,0);beam.addColorStop(0,'rgba(42,183,235,0)');beam.addColorStop(.35,'rgba(42,183,235,.4)');beam.addColorStop(1,'rgba(145,226,255,.85)');
+    ctx.fillStyle=beam;
+    for(let l=0;l<6;l++){const ly=h*.5+(l-2.5)*h*.052;ctx.globalAlpha=.5+(l===2||l===3?.35:0);ctx.fillRect(w*.62,ly-.6,w*.38,1.2);}
+    ctx.globalAlpha=1;ctx.shadowBlur=14;ctx.shadowColor='#39bce9';ctx.fillRect(w*.74,h*.5-h*.132,w*.26,1);ctx.fillRect(w*.74,h*.5+h*.13,w*.26,1);ctx.shadowBlur=0;
     raf=requestAnimationFrame(frame);
   }
   toggle.addEventListener('click', () => {
