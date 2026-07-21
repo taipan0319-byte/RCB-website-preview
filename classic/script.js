@@ -20,7 +20,7 @@
 
   const canvas = document.querySelector('#signal-canvas');
   const toggle = document.querySelector('.motion-toggle');
-  if (!canvas || reduced) { if (toggle) toggle.hidden = true; return; }
+  if (!canvas) { if (toggle) toggle.hidden = true; return; }
   const ctx = canvas.getContext('2d');
   let particles = [], raf, paused = false, w = 0, h = 0, dpr = 1;
   const colors = ['#0070af','#0a8dcc','#2cb5e8','#6ecff1','#175883'];
@@ -69,9 +69,18 @@
   toggle.addEventListener('click', () => {
     paused=!paused; toggle.setAttribute('aria-pressed',String(paused));
     toggle.setAttribute('aria-label',paused?'Play animation':'Pause animation');toggle.textContent=paused?'▶':'Ⅱ';
-    if(!paused) raf=requestAnimationFrame(frame);
+    if(paused){document.body.classList.remove('motion-on');document.dispatchEvent(new Event('rcb-motion-off'));}
+    else{document.body.classList.add('motion-on');document.dispatchEvent(new Event('rcb-motion-on'));resize();raf=requestAnimationFrame(frame);}
   });
-  addEventListener('resize',resize,{passive:true});resize();raf=requestAnimationFrame(frame);
+  addEventListener('resize',resize,{passive:true});resize();
+  if (reduced) {
+    paused = true;
+    toggle.setAttribute('aria-pressed','true');
+    toggle.setAttribute('aria-label','Play animation');
+    toggle.textContent='▶';
+  } else {
+    raf=requestAnimationFrame(frame);
+  }
 })();
 
 /* Enterprise risk management: rotating layer cube + tenet sync */
@@ -119,19 +128,29 @@
     });
   };
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const tenets = document.querySelectorAll('#tenets > div');
+  let spinning = false, spinRaf = 0, syncTimer = 0, k = 0;
+  const spin = ms => { setAngle((ms / 22000 * 360) % 360); spinRaf = requestAnimationFrame(spin); };
+  const startMotion = () => {
+    if (spinning) return;
+    spinning = true;
+    spinRaf = requestAnimationFrame(spin);
+    if (tenets.length === N) syncTimer = setInterval(() => {
+      tenets.forEach((t, j) => t.classList.toggle('active', j === k));
+      slabs.forEach((s, j) => s.classList.toggle('active', j === k));
+      k = (k + 1) % N;
+    }, 2800);
+  };
+  const stopMotion = () => {
+    spinning = false;
+    cancelAnimationFrame(spinRaf);
+    clearInterval(syncTimer);
+  };
   if (reducedMotion) {
     setAngle(-30);
+    document.addEventListener('rcb-motion-on', startMotion);
+    document.addEventListener('rcb-motion-off', stopMotion);
   } else {
-    const spin = ms => { setAngle((ms / 22000 * 360) % 360); requestAnimationFrame(spin); };
-    requestAnimationFrame(spin);
+    startMotion();
   }
-
-  const tenets = document.querySelectorAll('#tenets > div');
-  if (reducedMotion || tenets.length !== N) return;
-  let k = 0;
-  setInterval(() => {
-    tenets.forEach((t, j) => t.classList.toggle('active', j === k));
-    slabs.forEach((s, j) => s.classList.toggle('active', j === k));
-    k = (k + 1) % N;
-  }, 2800);
 })();
