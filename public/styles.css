@@ -114,3 +114,9 @@ footer{background:var(--deep);color:#b8c3ca;padding:clamp(70px,9vw,120px) var(--
 @media(max-width:1000px){.health-breath{left:-18%;opacity:.55}.health-ekg{width:100%;opacity:.5}}
 @media(max-width:680px){.health-breath{width:120vw;left:-45vw}}
 @media(prefers-reduced-motion:reduce){body:not(.motion-on) .health-beat{display:none}}
+
+/* Principle: pull quote with evidence paragraph beside it */
+.principle-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:6vw;align-items:center;text-align:left;max-width:1280px;margin:60px auto 0}
+.principle-grid .principle-statement{margin:0;max-width:none}
+.principle-support p{font-size:17.5px;line-height:1.75;color:#42535f;max-width:48ch;margin:0;border-left:2px solid var(--blue);padding-left:28px}
+@media(max-width:900px){.principle-grid{grid-template-columns:1fr;gap:44px;margin-top:45px}}
