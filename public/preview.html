@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;650;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap">
-  <link rel="stylesheet" href="styles.css?v=8">
+  <link rel="stylesheet" href="styles.css?v=9">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -68,25 +68,31 @@
   </div>
 
   <main id="main">
-    <section class="hero" id="top">
-      <div class="hero-copy">
-        <p class="eyebrow">Benefits <i></i> Risk <i></i> Management Consulting</p>
-        <h1>Bring us the challenge.<br>Expect a better outcome.</h1>
-        <p class="hero-lede">Results, not another report.</p>
-        <p class="hero-body">RCB turns complex health plans, pharmacy arrangements, and operating systems into stronger performance. We recover hidden value, enforce vendor accountability, and create better paths forward.</p>
+    <section class="health health-hero" id="top" aria-labelledby="health-heading">
+      <div class="health-breath" aria-hidden="true"><i></i><i></i><i></i><i></i><b></b></div>
+      <div class="health-ekg" aria-hidden="true">
+        <svg viewBox="0 180 744 180" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <defs><linearGradient id="ekg-grad" x1="0" x2="1">
+            <stop offset="0" stop-color="#2da3d5" stop-opacity=".1"/>
+            <stop offset=".4" stop-color="#2cb5e8" stop-opacity=".85"/>
+            <stop offset=".72" stop-color="#5fd3c4" stop-opacity=".4"/>
+            <stop offset="1" stop-color="#8fe6b0" stop-opacity="0"/>
+          </linearGradient></defs>
+          <path class="health-trace" id="health-trace-path" d="M-10 320 h80 q14 -24 28 0 h16 l6 8 l9 -104 l9 128 l7 -32 h18 q20 -48 40 0 h56 q14 -24 28 0 h16 l6 8 l9 -104 l9 128 l7 -32 h18 q20 -48 40 0 h56 q14 -24 28 0 h16 l6 8 l9 -104 l9 128 l7 -32 h18 q20 -48 40 0 h30"/>
+          <circle class="health-beat" r="5"><animateMotion dur="12s" repeatCount="indefinite"><mpath xlink:href="#health-trace-path" href="#health-trace-path"/></animateMotion></circle>
+        </svg>
+      </div>
+      <div class="health-copy">
+        <p class="section-number light">Benefits &nbsp;·&nbsp; Risk &nbsp;·&nbsp; Management Consulting</p>
+        <h1 id="health-heading" class="hero-question">What if your health plan actually made people healthier?</h1>
+        <p>A health plan can do more than finance disease and injury. With better primary care, pharmacy strategy, plan design, and data, employers can improve outcomes, help reverse chronic disease, and lower long-term costs.</p>
+        <p class="health-emphasis">Better health is not an extra benefit.<br>It is a financial strategy.</p>
         <div class="actions">
-          <a class="button button-primary" href="#expertise">Explore how we help <span>↘</span></a>
-          <a class="button button-quiet" href="#contact">Contact RCB</a>
+          <a class="button button-light" href="#expertise">Explore how we help <span>↘</span></a>
+          <a class="button button-ghost" href="#contact">Contact RCB</a>
         </div>
       </div>
-
-      <div class="board-panel" aria-label="Letter board cycling through employer health-plan challenges, then RCB, then the triple aim: increased satisfaction, improved outcomes, per capita cost reduced">
-        <div class="board" id="board" data-tone="problem" aria-hidden="true"></div>
-        <div class="board-label"><span>What employers face</span><span>What RCB delivers</span></div>
-        <button class="motion-toggle" type="button" aria-pressed="false" aria-label="Pause animation">Ⅱ</button>
-      </div>
-
-      <aside class="contact-strip" aria-label="Contact information">
+      <aside class="contact-strip strip-dark" aria-label="Contact information">
         <span>Rockford, Illinois</span>
         <a href="tel:+18159621600">815.962.1600</a>
         <a href="mailto:info@rcbco.com">info@rcbco.com</a>
@@ -136,25 +142,17 @@
       </div>
     </section>
 
-    <section class="health" aria-labelledby="health-heading">
-      <div class="health-breath" aria-hidden="true"><i></i><i></i><i></i><i></i><b></b></div>
-      <div class="health-ekg" aria-hidden="true">
-        <svg viewBox="0 180 744 180" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-          <defs><linearGradient id="ekg-grad" x1="0" x2="1">
-            <stop offset="0" stop-color="#2da3d5" stop-opacity=".1"/>
-            <stop offset=".4" stop-color="#2cb5e8" stop-opacity=".85"/>
-            <stop offset=".72" stop-color="#5fd3c4" stop-opacity=".4"/>
-            <stop offset="1" stop-color="#8fe6b0" stop-opacity="0"/>
-          </linearGradient></defs>
-          <path class="health-trace" id="health-trace-path" d="M-10 320 h80 q14 -24 28 0 h16 l6 8 l9 -104 l9 128 l7 -32 h18 q20 -48 40 0 h56 q14 -24 28 0 h16 l6 8 l9 -104 l9 128 l7 -32 h18 q20 -48 40 0 h56 q14 -24 28 0 h16 l6 8 l9 -104 l9 128 l7 -32 h18 q20 -48 40 0 h30"/>
-          <circle class="health-beat" r="5"><animateMotion dur="12s" repeatCount="indefinite"><mpath xlink:href="#health-trace-path" href="#health-trace-path"/></animateMotion></circle>
-        </svg>
+    <section class="board-sec section-pad reveal" id="challenge">
+      <div class="board-sec-copy">
+        <p class="section-number">03 / The RCB difference</p>
+        <h2>Bring us the challenge.<br>Expect a better outcome.</h2>
+        <p class="hero-lede">Results, not another report.</p>
+        <p class="hero-body">RCB turns complex health plans, pharmacy arrangements, and operating systems into stronger performance. We recover hidden value, enforce vendor accountability, and create better paths forward.</p>
       </div>
-      <div class="health-copy reveal">
-        <p class="section-number light">03 / A broader view of health</p>
-        <h2 id="health-heading">What if your health plan actually made people healthier?</h2>
-        <p>A health plan can do more than finance disease and injury. With better primary care, pharmacy strategy, plan design, and data, employers can improve outcomes, help reverse chronic disease, and lower long-term costs.</p>
-        <p class="health-emphasis">Better health is not an extra benefit.<br>It is a financial strategy.</p>
+      <div class="board-panel" aria-label="Letter board cycling through employer health-plan challenges, then RCB, then the triple aim: increased satisfaction, improved outcomes, per capita cost reduced">
+        <div class="board" id="board" data-tone="problem" aria-hidden="true"></div>
+        <div class="board-label"><span>What employers face</span><span>What RCB delivers</span></div>
+        <button class="motion-toggle" type="button" aria-pressed="false" aria-label="Pause animation">Ⅱ</button>
       </div>
     </section>
 
@@ -265,6 +263,6 @@
     <p>Rockford Consulting &amp; Brokerage, Inc.</p>
     <p>© <span id="year"></span> RCB. All rights reserved.</p>
   </footer>
-  <script src="script.js?v=8"></script>
+  <script src="script.js?v=9"></script>
 </body>
 </html>

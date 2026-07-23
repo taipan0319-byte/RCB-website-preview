@@ -5,7 +5,9 @@ Static site for Rockford Consulting & Brokerage, deployed to GitHub Pages via
 
 ## Layout
 
-- `/` (root) — live site: the split-flap letter-board design
+- `/` (root) — live site. Opens with the dark health hero ("What if your health plan
+  actually made people healthier?" + breathing/heartbeat animation); the split-flap
+  letter board lives at section 03 ("The RCB difference") with the challenge headline.
 - `/classic/` — archived earlier design (threads animation), noindexed, keep for comparison
 - `/v2/` — redirect stub to `/` (old preview link), do not delete
 - `public/preview.html` + `public/styles.css`/`script.js` — mirror of the root site;

@@ -104,3 +104,21 @@ footer{background:var(--deep);color:#b8c3ca;padding:clamp(70px,9vw,120px) var(--
 .principle-grid .principle-statement{margin:0;max-width:none}
 .principle-support p{font-size:17.5px;line-height:1.75;color:#42535f;max-width:48ch;margin:0;border-left:2px solid var(--blue);padding-left:28px}
 @media(max-width:900px){.principle-grid{grid-template-columns:1fr;gap:44px;margin-top:45px}}
+
+/* Dark hero (health block promoted) and relocated challenge/board section */
+.health-hero{min-height:calc(100svh - 92px);grid-template-rows:1fr auto}
+.hero-question{font-family:var(--serif);font-size:clamp(46px,5.6vw,92px);font-weight:500;line-height:1;letter-spacing:-.04em;margin-bottom:30px;color:#fff}
+.health-hero .health-emphasis{margin-top:34px}
+.health-hero .actions{margin-top:44px}
+.button-light{background:#fbfaf7;color:var(--ink);border-color:#fbfaf7}
+.button-light:hover{background:var(--electric);border-color:var(--electric);color:#fff}
+.button-ghost{color:#fff;border-color:rgba(255,255,255,.5)}
+.button-ghost:hover{background:rgba(255,255,255,.12)}
+.strip-dark{border-top-color:rgba(255,255,255,.22);color:#c7d1d7;position:relative;z-index:2;margin-top:55px}
+.strip-dark span{color:#8bcbed}
+.strip-dark a{color:#fff}
+.board-sec{display:grid;grid-template-columns:.9fr 1.1fr;gap:6vw;align-items:center;background:var(--white);border-top:1px solid var(--rule)}
+.board-sec h2{font-family:var(--serif);font-size:clamp(40px,4.6vw,70px);font-weight:400;letter-spacing:-.04em;line-height:1.02;margin-bottom:20px}
+.board-sec .board-panel,.board-sec .signal{min-height:520px;width:100%;align-self:center}
+@media(max-width:1000px){.board-sec{grid-template-columns:1fr}.health-hero{min-height:auto;padding-top:85px;padding-bottom:70px}}
+@media(max-width:680px){.hero-question{font-size:clamp(38px,10.5vw,50px)}.board-sec .board-panel,.board-sec .signal{min-height:400px}.health-hero .actions{flex-direction:column;align-items:stretch}.strip-dark{flex-wrap:wrap;gap:12px 20px}.strip-dark span{width:100%;margin:0}}
