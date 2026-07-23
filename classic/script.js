@@ -12,7 +12,11 @@
   }));
 
   document.querySelector('#year').textContent = new Date().getFullYear();
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Owner choice: animations autoplay for everyone; the pause button (II)
+  // in the challenge board panel is the opt-out. body.motion-on unlocks the
+  // CSS animations even when the OS reports prefers-reduced-motion.
+  const reduced = false;
+  document.body.classList.add('motion-on');
   const observer = reduced ? null : new IntersectionObserver(entries => {
     entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
   }, { threshold: .12 });
@@ -127,7 +131,7 @@
       t.el.style.transform = c > 0 ? '' : 'scaleX(-1)';
     });
   };
-  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reducedMotion = false;
   const tenets = document.querySelectorAll('#tenets > div');
   let spinning = false, spinRaf = 0, syncTimer = 0, k = 0;
   const spin = ms => { setAngle((ms / 22000 * 360) % 360); spinRaf = requestAnimationFrame(spin); };
