@@ -27,9 +27,7 @@ Static site for Rockford Consulting & Brokerage, deployed to GitHub Pages via
 
 ## Deployment
 
-- **At DNS cutover:** switch the two og:image/twitter:image URLs in index.html
-  from taipan0319-byte.github.io/RCB-website-preview/... to https://www.rcbco.com/assets/og-card.png.
-
+- LIVE at www.rcbco.com since July 23, 2026 (DNS cutover done; og URLs switched).
 - Custom domain www.rcbco.com is configured in Pages settings; `CNAME` file in repo.
 - Email for rcbco.com is Microsoft 365 and rides on GoDaddy DNS records (MX/SPF).
   Nothing in this repo affects it; never advise editing those records except per the
