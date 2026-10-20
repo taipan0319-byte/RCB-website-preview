@@ -122,3 +122,19 @@ footer{background:var(--deep);color:#b8c3ca;padding:clamp(70px,9vw,120px) var(--
 .board-sec .board-panel,.board-sec .signal{min-height:520px;width:100%;align-self:center}
 @media(max-width:1000px){.board-sec{grid-template-columns:1fr}.health-hero{min-height:auto;padding-top:85px;padding-bottom:70px}}
 @media(max-width:680px){.hero-question{font-size:clamp(38px,10.5vw,50px)}.board-sec .board-panel,.board-sec .signal{min-height:400px}.health-hero .actions{flex-direction:column;align-items:stretch}.strip-dark{flex-wrap:wrap;gap:12px 20px}.strip-dark span{width:100%;margin:0}}
+
+/* 60 Minutes media card */
+.media-card{display:grid;grid-template-columns:200px 1fr;gap:22px;align-items:center;margin-top:30px;border:1px solid var(--rule);background:var(--paper);padding:14px;transition:border-color .25s,box-shadow .25s,transform .25s;max-width:580px}
+.media-card:hover{border-color:var(--blue);box-shadow:0 14px 34px rgba(6,21,34,.14);transform:translateY(-2px)}
+.media-thumb{position:relative;aspect-ratio:16/9;background:radial-gradient(circle at 30% 30%,#10304a,#071725 78%);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.media-thumb:before{content:"";position:absolute;inset:-45% -25%;background:radial-gradient(circle at 50% 50%,rgba(44,181,235,.16),transparent 58%)}
+.media-play{position:relative;width:52px;height:52px;border-radius:50%;background:rgba(251,250,247,.94);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 14px rgba(0,0,0,.45);transition:background .25s}
+.media-play i{display:block;width:0;height:0;border-style:solid;border-width:9px 0 9px 15px;border-color:transparent transparent transparent var(--ink);margin-left:4px;transition:border-color .25s}
+.media-card:hover .media-play{background:var(--electric)}
+.media-card:hover .media-play i{border-left-color:#fff}
+.media-net{position:absolute;left:10px;bottom:8px;color:rgba(255,255,255,.75);font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:800}
+.media-meta{display:flex;flex-direction:column;gap:4px;padding-right:8px}
+.media-meta strong{font-family:var(--serif);font-weight:500;font-size:21px;letter-spacing:-.015em;line-height:1.15;color:var(--ink)}
+.media-meta>span{font-size:12.5px;color:var(--slate);line-height:1.5}
+.media-meta em{font-style:normal;font-size:11.5px;font-weight:750;color:var(--blue);margin-top:8px;text-transform:uppercase;letter-spacing:.1em}
+@media(max-width:680px){.media-card{grid-template-columns:1fr;gap:14px;max-width:none}.media-thumb{aspect-ratio:16/8}}
